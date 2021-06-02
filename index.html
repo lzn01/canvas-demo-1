@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id ="canvas"></div>
+    <!-- <div id ="canvas"></div>
     <script>
-        canvas.onclick = (e) =>{
+        canvas.onmousemove = (e) =>{
             console.log(e.clientX)
             console.log(e.clientY)
             // console.log 测试大法
@@ -29,6 +29,42 @@
             // 此时点击鼠标，div只是创建在了内存里
             canvas.appendChild(div)
         }
+    </script> -->
+    <canvas id = "canvas" width="100" height="100"></canvas>
+    <!-- canvas的宽高一开始就确定好，如果在css中改，只会拉伸（变糊） -->
+    <script>
+        // JS获取浏览器可视宽高
+        let canvas = document.getElementById("canvas")
+        canvas.width = document.documentElement.clientWidth
+        canvas.height = document.documentElement.clientHeight
+        // 画线
+        let ctx = canvas.getContext("2d");
+        let painting = false // 默认不在画
+
+
+        ctx.fillStyle = "black"; // 填充样式
+        ctx.strokeStyle = 'none'
+        canvas.onmousedown = () =>{
+            painting = true
+        }
+        canvas.onmousemove = (e) => {
+            if(painting === true){
+                ctx.beginPath();
+                ctx.arc(e.clientX, e.clientY, 10, 0, 2 *Math.PI);
+                ctx.stroke();
+                ctx.fill();
+            }else{
+                console.log('什么都不做')
+            }
+        }
+        canvas.onmouseup = () => {
+            painting = false
+        }
+
+
+
+        // ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        // ctx.fillRect (30, 30, 55, 50);
     </script>
 </body>
 </html>
