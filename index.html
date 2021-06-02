@@ -5,8 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>画板</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id ="canvas"></div>
+    <script>
+        canvas.onclick = (e) =>{
+            console.log(e.clientX)
+            console.log(e.clientY)
+            // console.log 测试大法
+            // 只要用户点击鼠标就创建一个div (让文档创建一个标签)
+            let div = document.createElement('div')
+            div.style.position = 'absolute'
+            div.style.left = e.clientX + 'px'
+            div.style.top = e.clientY + 'px'
+            // div.style.border = '1px solid red'
+            div.style.width = '6px'
+            div.style.height = '6px'
+            div.style.marginLeft = '-3px'
+            div.style.marginTop = '-3px'
+            div.style.borderRadius = '50%'
+            div.style.backgroundColor = 'black'
+            // 此时点击鼠标，div只是创建在了内存里
+            canvas.appendChild(div)
+        }
+    </script>
 </body>
 </html>
